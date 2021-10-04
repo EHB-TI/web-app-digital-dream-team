@@ -9,4 +9,4 @@
 # *you may want further sections*
 *especially if the use of your application is not self-evident*
 # Workspace
-https://ddt-ehb.atlassian.net/jira/software/projects/DDTE
+https://ddt-ehb.atlassian.net/jira/software/projects/DDTE/boards/1
