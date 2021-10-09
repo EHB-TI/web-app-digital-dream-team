@@ -1,5 +1,6 @@
 # Goal
-*describe how this web app will (evantually) earn money or make the world a better place*
+*The share-a-plate app will reduce food waste, provide food for the hungry in need and above that helps building social relations in the community*
+
 # User Stories with Acceptance criteria
 
 As a visitor  I can register  So that I can become a valid member
