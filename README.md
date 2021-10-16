@@ -42,7 +42,13 @@
 * https://ddt-ehb.atlassian.net/jira/software/projects/DDTE/boards/1 
 
 # Threat model
-*describe your threat model. One or more architectural diagram expected. Also a list of the principal threats and what you will do about them*
+![image](https://user-images.githubusercontent.com/57287911/137589168-22df9323-6176-42a0-bde8-3e9639ad152b.png)
+* DDos - Cloudflare
+* Man In The Middle - Https
+* Cross Site Scripting - CSRF
+* SQL Injection - Spring Data
+* Identity Spoofing - Login Token/Login Throttling
+* Botting - Captcha/Email Verification
 
 # Deployment
 *minimally, this section contains a public URL of the app. A description of how your software is deployed is a bonus. Do you do this manually, or did you manage to automate? Have you taken into account the security of your deployment process?*
