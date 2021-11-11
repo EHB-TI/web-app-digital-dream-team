@@ -1,0 +1,55 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "janj",
+      "firstname": "jan",
+      "lastname": "jansen"
+    },
+    {
+      "id": 2 ,
+      "username": "pietp",
+      "firstname": "piet",
+      "lastname": "pieters"
+    },
+    {
+      "id": 3,
+      "username": "boomd",
+      "firstname": "boom boom ",
+      "lastname": "dimi"
+    }
+  ],
+
+  "plates": [
+    {
+      "id": 1,
+      "title": "ham",
+      "description": "koe",
+      "pickuptime": "18:00",
+      "endpickuptime": "20:00",
+      "portionsavailable": 5,
+      "createduser": "1",
+      "pickupuser": []
+    },
+    {
+      "id": 2,
+      "title": "soep",
+      "description": "van alles",
+      "pickuptime": "12:00",
+      "endpickuptime": "14:00",
+      "portionsavailable": 2,
+      "createduser": "2",
+      "pickupuser": []
+    },
+    {
+      "id": 3,
+      "title": "chocomousse",
+      "description": "met melk van de boerin",
+      "pickuptime": "17:30",
+      "endpickuptime": "19:00",
+      "portionsavailable": 12,
+      "createduser": "2",
+      "pickupuser": []
+    }
+  ]
+}
