@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { PlatesComponent } from './components/plates/plates.component';
 import { PlateComponent } from './components/plate/plate.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const appRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ]
 
@@ -35,6 +40,7 @@ const appRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     AboutComponent,
+    RegisterComponent,
     // PlatesComponent,
     // PlateComponent
   ],

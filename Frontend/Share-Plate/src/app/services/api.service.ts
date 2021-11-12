@@ -27,6 +27,11 @@ export class ApiService {
     return this.client.get<User>(url);
   }
 
+  addUser(user: User): Observable<User> {
+    const url = `${this.apiUrl}/users`;
+    return this.client.post<User>(url, user, httpOptions);
+  }
+
   // PLATE METHODS
   getPlates(): Observable<Plate[]> {
     const url = this.apiUrl + '/plates/';

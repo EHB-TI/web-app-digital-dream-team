@@ -7,7 +7,7 @@
       "lastname": "jansen"
     },
     {
-      "id": 2 ,
+      "id": 2,
       "username": "pietp",
       "firstname": "piet",
       "lastname": "pieters"
@@ -19,7 +19,6 @@
       "lastname": "dimi"
     }
   ],
-
   "plates": [
     {
       "id": 1,
