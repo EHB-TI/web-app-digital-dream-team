@@ -49,8 +49,10 @@ export class ShareComponent implements OnInit {
       portionsavailable: Number(this.portionsavailable),
       createduser : this.createduser,
       pickupuser: []
-
     }
+
+    this.onShare.emit(newPlate);
+
 
     this.apiService.addPlate(newPlate).subscribe();
     console.log(newPlate);
