@@ -13,6 +13,7 @@ import { AboutComponent } from './components/about/about.component';
 import { PlatesComponent } from './components/plates/plates.component';
 import { PlateComponent } from './components/plate/plate.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ShareComponent } from './components/share/share.component';
 
 const appRoutes: Routes = [
   {
@@ -30,6 +31,10 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'share',
+    component: ShareComponent
   }
 ]
 
@@ -41,8 +46,9 @@ const appRoutes: Routes = [
     HomeComponent,
     AboutComponent,
     RegisterComponent,
-    // PlatesComponent,
-    // PlateComponent
+    ShareComponent,
+    PlatesComponent,
+    PlateComponent
   ],
   imports: [
     BrowserModule,

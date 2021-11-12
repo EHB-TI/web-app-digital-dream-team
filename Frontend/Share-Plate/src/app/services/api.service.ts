@@ -34,7 +34,7 @@ export class ApiService {
 
   // PLATE METHODS
   getPlates(): Observable<Plate[]> {
-    const url = this.apiUrl + '/plates/';
+    const url = `${this.apiUrl}/plates`;
     return this.client.get<Plate[]>(url);
   }
 
