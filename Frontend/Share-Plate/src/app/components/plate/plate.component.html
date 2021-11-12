@@ -1,9 +1,12 @@
 <!-- {{ plate.description }} -->
-title: {{plate.title}} <br/>
-description: {{plate.description}}<br/>
-porties: {{plate.portionsavailable}}<br/>
+title: {{plate.title}} <br />
+description: {{plate.description}}<br />
+porties: {{plate.portionsavailable}}<br />
 <!-- Pick-up starts at: {{pickuptime}}<br/> -->
 <!-- Pick-up ends at: {{endpickuptime}} -->
-<br/>
+
+<!-- Pick up address: {{user.address}} -->
 
 
+<input (click)="onToggle(plate)" class="btn btn-primary" value="pick this plate"/>
+<br />

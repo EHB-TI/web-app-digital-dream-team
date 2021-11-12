@@ -53,9 +53,7 @@ export class ShareComponent implements OnInit {
 
     this.onShare.emit(newPlate);
 
-
     this.apiService.addPlate(newPlate).subscribe();
-    console.log(newPlate);
 
     this.router.navigate(['/plates']);
   }

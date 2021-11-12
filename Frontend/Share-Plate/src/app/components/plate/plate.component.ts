@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Plate } from 'src/app/models/Plate';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-plate',
@@ -10,9 +11,22 @@ export class PlateComponent implements OnInit {
   @Input()
   plate!: Plate;
 
-  constructor() { }
+  @Input()
+  user!: User;
+
+  @Output()
+  onTakeAPlate: EventEmitter<Plate> =new EventEmitter();
+
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.plate.pickupuser = [];
+  }
+
+  onToggle(plate: Plate) {
+    this.onTakeAPlate.emit(plate);
   }
 
 }

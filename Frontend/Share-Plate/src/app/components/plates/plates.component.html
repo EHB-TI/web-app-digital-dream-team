@@ -1,4 +1,3 @@
-
 <div>
   <h1>Stop wasting food!</h1>
   <h3>Share or pick a plate here</h3>
@@ -6,9 +5,14 @@
 </div>
 
 
+<!-- <app-share
+  (onShare)="addPlate($event)"
+> </app-share> -->
 
-<app-plate *ngFor="let plate of plates" [plate] = "plate">
-  title: {{plate.title}} <br/>
+
+<app-plate *ngFor="let plate of plates" [plate]="plate" (onTakeAPlate)="takeAPlate(plate)">
+
+  <!-- title: {{plate.title}} <br/>
   description: {{plate.description}}<br/>
-  <br/>
+  <br/> -->
 </app-plate>
