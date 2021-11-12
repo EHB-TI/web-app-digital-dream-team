@@ -17,8 +17,8 @@ const httpOptions = {
 export class ApiService {
   private apiUrl = 'http://localhost:5000';
   // private apiUrl = 'backend';
+  plates: Plate[] = [];
 
-  private plates: Plate[] = [];
   constructor(private client: HttpClient) {
   }
 

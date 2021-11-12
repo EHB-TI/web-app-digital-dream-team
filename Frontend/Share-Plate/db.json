@@ -49,6 +49,15 @@
       "portionsavailable": 12,
       "createduser": "2",
       "pickupuser": []
+    },
+    {
+      "title": "ttt",
+      "description": "fgfg",
+      "pickuptime": "fgf",
+      "endpickuptime": "gfgf",
+      "portionsavailable": 2,
+      "pickupuser": [],
+      "id": 4
     }
   ]
 }

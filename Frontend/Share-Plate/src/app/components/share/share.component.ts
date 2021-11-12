@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../../models/User';
 import { Plate } from '../../models/Plate';
 import { ApiService } from 'src/app/services/api.service';
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./share.component.css']
 })
 export class ShareComponent implements OnInit {
+
+  @Output() onShare: EventEmitter<Plate> = new EventEmitter();
   title! : string;
   description!: string;
   pickuptime!: string;

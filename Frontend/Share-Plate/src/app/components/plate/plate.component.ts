@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Plate } from 'src/app/models/Plate';
 
 @Component({
   selector: 'app-plate',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plate.component.css']
 })
 export class PlateComponent implements OnInit {
+  @Input()
+  plate!: Plate;
 
   constructor() { }
 
