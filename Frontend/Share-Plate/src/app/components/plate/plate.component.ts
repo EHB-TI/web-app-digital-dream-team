@@ -15,8 +15,10 @@ export class PlateComponent implements OnInit {
   user!: User;
 
   @Output()
-  onTakeAPlate: EventEmitter<Plate> =new EventEmitter();
+  onTakeAPlate: EventEmitter<Plate> = new EventEmitter();
 
+  @Output()
+  onDeletePlate: EventEmitter<Plate> = new EventEmitter();
 
   constructor() {
   }
@@ -27,6 +29,10 @@ export class PlateComponent implements OnInit {
 
   onToggle(plate: Plate) {
     this.onTakeAPlate.emit(plate);
+  }
+
+  onToggleDelete(plate: Plate) {
+    this.onDeletePlate.emit(plate);
   }
 
 }

@@ -40,15 +40,19 @@ export class PlatesComponent implements OnInit {
   }
 
   takeAPlate(plate: Plate) {
-
     if (plate.portionsavailable > 0) {
       // if (user.id != null) {
         plate.portionsavailable -= 1;
+        // notifySharingUser()  // to do
         // temp hardcoded, need a function in apiservice to return to current user (id)
         plate.pickupuser.push(1);
         this.apiService.updatePlate(plate);
       // }
     }
   }
+
+        // notifySharingUser(){}
+        // to do
+
 
 }
