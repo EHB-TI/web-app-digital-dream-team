@@ -10,7 +10,7 @@
             porties: {{plate.portionsavailable}}<br />
             <!-- Pick-up starts at: {{pickuptime}}<br/> -->
             <!-- Pick-up ends at: {{endpickuptime}} -->
-            <!-- Pick up address: {{user.address}} -->
+             Pick up address: {{plate.createduser}} <!-- must be replaced by address when implemented -->
           </div>
           <div class="col-md-2">
             <input (click)="onToggle(plate)" class="btn btn-primary" value="pick this plate" />
