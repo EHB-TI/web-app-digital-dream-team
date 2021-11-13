@@ -1,14 +1,19 @@
-<div>
-  <h1>Stop wasting food!</h1>
-  <h3>Share or pick a plate here</h3>
+<div class="row justify-content-center">
+<div class="col-md-8">
+  <div class="center">
+  <h2>Stop wasting food!</h2>
+  <h3>Pick a plate, mate</h3></div>
+</div>
+<div class="col-md-4">
+  <br/>
   <a class="btn btn-lg btn-primary" routerLink="/share">share now</a>
 </div>
-
+</div>
 
 <!-- <app-share
   (onShare)="addPlate($event)"
 > </app-share> -->
-
+<br/>
 
 <app-plate *ngFor="let plate of plates" [plate]="plate" (onTakeAPlate)="takeAPlate(plate)">
 
@@ -16,3 +21,8 @@
   description: {{plate.description}}<br/>
   <br/> -->
 </app-plate>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
