@@ -46,7 +46,7 @@
 * DDos - Cloudflare
 * Man In The Middle - Https
 * Cross Site Scripting - CSRF
-> ##### The frontend offers forms handling user input, providing the functionalities of entering user details as well as entering details of a plate to be shared. Malicious users could try to exploit the forms for XXS vulnerabilities. By using the the sring interpolation feature of the Angular framework, we manage to secure the frontend of the kind of attacks. 
+> ##### The frontend offers forms handling user input, providing the functionalities of entering user details as well as entering details of a plate to be shared. Malicious users could try to exploit these forms and search for XXS vulnerabilities. By using the the string interpolation feature of the Angular framework, we manage to secure the frontend for these kinds of attacks. 
 
 * SQL Injection - Spring Data
 * Identity Spoofing - Login Token/Login Throttling
