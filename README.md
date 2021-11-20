@@ -1,7 +1,15 @@
+# Table of contents
+* [Goal](#goal)
+* [User Stories with Acceptance criteria](#user-stories-with-acceptance-criteria)
+* [Workspace](#workspace)
+* [Threat model](#threat-model)
+
+
+# goal
 # Goal
 *The share-a-plate app will reduce food waste, provide food for the hungry in need and above that helps building social relations in the community*
 
-# User Stories with Acceptance criteria
+## User Stories with Acceptance criteria
 
 ## As a visitor  I can register  So that I can become a valid member
 * I can navigate to a registration page
@@ -41,12 +49,15 @@
 # Workspace
 * https://ddt-ehb.atlassian.net/jira/software/projects/DDTE/boards/1 
 
+
+# threat model
 # Threat model
 ![image](https://user-images.githubusercontent.com/57287911/137589168-22df9323-6176-42a0-bde8-3e9639ad152b.png)
 * DDos - Cloudflare
 * Man In The Middle - Https
 * Cross Site Scripting - CSRF
 > ##### The frontend offers forms handling user input, providing the functionalities of entering user details as well as entering details of a plate to be shared. Malicious users could try to exploit these forms and search for XXS vulnerabilities. By using the the string interpolation feature of the Angular framework, we manage to secure the frontend for these kinds of attacks. 
+
 
 * SQL Injection - Spring Data
 * Identity Spoofing - Login Token/Login Throttling
