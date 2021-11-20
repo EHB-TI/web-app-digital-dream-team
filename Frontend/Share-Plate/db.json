@@ -47,7 +47,7 @@
       "description": "test2",
       "startpickuptime": "2021-11-06T18:52",
       "endpickuptime": "2021-11-06T20:53",
-      "portionsavailable": 4,
+      "portionsavailable": 2,
       "createdby": "1",
       "pickupusers": [],
       "createdat": "2021-11-20T14:53:19.970Z",
