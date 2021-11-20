@@ -48,7 +48,7 @@ export class ApiService {
     return this.client.delete<Plate>(url)
   }
 
-  updatePlate(plate: Plate) : Observable<Plate> {
+  updatePlate(plate: Plate): Observable<Plate> {
     const url = `${this.apiUrl}/plates/${plate.id}`;
     return this.client.put<Plate>(url, plate, httpOptions)
   }

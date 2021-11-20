@@ -47,7 +47,10 @@ export class PlatesComponent implements OnInit {
         // temp hardcoded, need a function in apiservice to return to current user (id)
         // plate.pickupuser.push(1);
         console.log(plate.portionsavailable)
-        this.apiService.updatePlate(plate);
+        this.apiService.updatePlate(plate).subscribe(
+        // (plate) => (this.plates.push(plate))
+        () => (this.plates = this.plates)
+        );
       // }
     }
   }
