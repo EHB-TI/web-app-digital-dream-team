@@ -53,7 +53,7 @@ export class ApiService {
     return this.client.put<Plate>(url, plate, httpOptions)
   }
 
-  addPlate(plate: Plate):Observable<Plate> {
+  addPlate(plate: Plate): Observable<Plate> {
     return this.client.post<Plate>(this.apiUrl + '/plates/', plate, httpOptions)
   }
 }

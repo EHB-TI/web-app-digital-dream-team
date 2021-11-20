@@ -45,7 +45,8 @@ export class PlatesComponent implements OnInit {
         plate.portionsavailable -= 1;
         // notifySharingUser()  // to do
         // temp hardcoded, need a function in apiservice to return to current user (id)
-        plate.pickupuser.push(1);
+        // plate.pickupuser.push(1);
+        console.log(plate.portionsavailable)
         this.apiService.updatePlate(plate);
       // }
     }
