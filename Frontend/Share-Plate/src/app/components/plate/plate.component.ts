@@ -24,7 +24,7 @@ export class PlateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.plate.pickupuser = [];
+    this.plate.pickupusers = [];
   }
 
   onToggle(plate: Plate) {

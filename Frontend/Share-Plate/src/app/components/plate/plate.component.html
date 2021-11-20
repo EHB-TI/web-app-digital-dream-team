@@ -7,11 +7,13 @@
           <div class="form-group row">
             <div class="col-sm-6">
               description: {{plate.description}}<br />
-              porties: {{plate.portionsavailable}}<br />
-              <!-- Pick-up starts at: {{pickuptime}}<br/> -->
-              <!-- Pick-up ends at: {{endpickuptime}} -->
-              Pick up address: {{plate.createduser}}
+              portions: {{plate.portionsavailable}}<br />
+              Pick-up starts at: {{plate.startpickuptime}}<br/> -->
+              Pick-up ends at: {{plate.endpickuptime}}
+              Pick up address: {{plate.createdby}}
               <!-- must be replaced by address when implemented -->
+              Created/modified at: {{plate.modifiedat}}
+
             </div>
             <div class="col-sm-3">
               <input (click)="onToggle(plate)" class="btn btn-primary custom-btn" value="pick" />
