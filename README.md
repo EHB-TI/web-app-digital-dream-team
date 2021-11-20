@@ -46,9 +46,18 @@
 * DDos - Cloudflare
 * Man In The Middle - Https
 * Cross Site Scripting - CSRF
+> ##### The frontend offers forms handling user input, providing the functionalities of entering user details as well as entering details of a plate to be shared. Malicious users could try to exploit the forms for XXS vulnerabilities. By using the the sring interpolation feature of the Angular framework, we manage to secure the frontend of the kind of attacks. 
+
 * SQL Injection - Spring Data
 * Identity Spoofing - Login Token/Login Throttling
 * Botting - Captcha/Email Verification
+
+* Additional best security practices used
+> ##### Avoided the use of innerHTML
+
+> Never concatenated user input as a string and send it as such to any template
+
+> Avoid non-Angular template engines on server side
 
 # Deployment
 *minimally, this section contains a public URL of the app. A description of how your software is deployed is a bonus. Do you do this manually, or did you manage to automate? Have you taken into account the security of your deployment process?*
