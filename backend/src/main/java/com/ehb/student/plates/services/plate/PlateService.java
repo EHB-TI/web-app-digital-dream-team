@@ -9,4 +9,10 @@ public interface PlateService {
     Plate getPlateById(Long id);
 
     Page<Plate> getPlates(Pageable pageable);
+
+    Plate createPlate(Plate plate);
+
+    Plate updatePlate(Plate plate);
+
+    void deletePlate(Long id);
 }
