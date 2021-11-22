@@ -4,7 +4,6 @@ import com.ehb.student.plates.entities.User;
 import com.ehb.student.plates.services.auth.AuthenticationService;
 import com.ehb.student.plates.services.request.AbstractRequestMapperService;
 import com.ehb.student.plates.web.dto.UserDTO;
-import com.ehb.student.plates.web.requests.AuthenticationRequest;
 import com.ehb.student.plates.web.requests.CreateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +22,6 @@ public class AuthenticationController {
     public AuthenticationController(AuthenticationService authService, AbstractRequestMapperService requestMapper) {
         this.authService = authService;
         this.requestMapper = requestMapper;
-    }
-
-    @PostMapping(path = "/auth/login")
-    public String attemptLogin(@Valid @RequestBody AuthenticationRequest request) {
-        return authService.doAuthentication(request.getUsername(), request.getPassword());
     }
 
     @PostMapping(path = "/auth/register")

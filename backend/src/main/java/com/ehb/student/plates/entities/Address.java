@@ -18,7 +18,7 @@ import java.util.List;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address extends AbstractEntity {
+public class Address {
 
     @Column(name = "street")
     private String street;

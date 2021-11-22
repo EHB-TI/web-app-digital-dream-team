@@ -2,6 +2,8 @@ package com.ehb.student.plates.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -18,9 +20,11 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "created_at", nullable = false)
+    @CreatedDate
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name = "modified_at", nullable = false)
+    @LastModifiedDate
+    @Column(name = "modified_at")
     private Date modifiedAt;
 }
