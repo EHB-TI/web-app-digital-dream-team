@@ -4,19 +4,25 @@
       "id": 1,
       "username": "janj",
       "firstname": "jan",
-      "lastname": "jansen"
+      "lastname": "jansen",
+      "email": "janjansen@shareplate.be",
+      "password": ""
     },
     {
       "id": 2,
       "username": "pietp",
       "firstname": "piet",
-      "lastname": "pieters"
+      "lastname": "pieters",
+      "email": "pietpieters@shareplate.be",
+      "password": ""
     },
     {
       "id": 3,
       "username": "boomd",
       "firstname": "boom boom ",
-      "lastname": "dimi"
+      "lastname": "dimi",
+      "email": "boomboomdimi@shareplate.be",
+      "password": ""
     }
   ],
   "plates": [

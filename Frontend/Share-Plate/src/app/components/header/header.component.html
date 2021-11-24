@@ -1,26 +1,43 @@
 <header>
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand" routerLink="/">Share a Plate</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex">
-          <ul class="navbar-nav flex-grow-1">
-              <li class="nav-item">
-                  <a class="nav-link text-dark" routerLink="/plates">Pick-a-plate</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link text-dark" routerLink="/share">Share-a-plate</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/logout">Log out</a>
-            </li>
-              <li class="nav-item">
-                  <a class="nav-link text-dark" routerLink="/about">About</a>
-              </li>
-          </ul>
+      <a class="navbar-brand" routerLink="/">Share a Plate</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex">
+        <ul class="navbar-nav flex-grow-1 mr-auto">
+          <li class="nav-item">
+              <a class="nav-link text-dark" routerLink="/plates">Pick-a-plate</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-dark" routerLink="/share">Share-a-plate</a>
+          </li>
+          
+          <!-- <li class="nav-item">
+              <a class="nav-link text-dark" routerLink="/about">About</a>
+          </li> -->
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" routerLink="/login">Log In</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              UserName Moet nog komen
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">
+                Profiel
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                Log out
+              </a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>

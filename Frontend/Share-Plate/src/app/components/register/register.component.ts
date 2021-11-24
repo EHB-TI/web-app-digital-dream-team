@@ -12,6 +12,8 @@ export class RegisterComponent implements OnInit {
   username!: string;
   name!: string;
   surname!: string;
+  email!: string;
+  password!: string;
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -23,16 +25,22 @@ export class RegisterComponent implements OnInit {
       alert('Username cannot be empty!');
       return;
     }
-
+    
     const newUser: User = {
       username: this.username,
       firstname: this.name,
-      lastname: this.surname
+      lastname: this.surname,
+      email: this.email,
+      password: this.password
     }
+
+    console.log(newUser.password)
 
     this.apiService.addUser(newUser).subscribe();
     console.log(newUser);
 
+    window.sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+    
     this.router.navigate(['/']);
   }
 
