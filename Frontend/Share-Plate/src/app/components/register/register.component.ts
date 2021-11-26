@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit {
   surname!: string;
   email!: string;
   password!: string;
+  street!: string;
+  number!: string;
+  postalcode!: string;
+  city!: string;
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -28,10 +32,14 @@ export class RegisterComponent implements OnInit {
     
     const newUser: User = {
       username: this.username,
-      firstname: this.name,
-      lastname: this.surname,
+      firstName: this.name,
+      lastName: this.surname,
       email: this.email,
-      password: this.password
+      password: this.password,
+      street: this.street,
+      number: this.number,
+      postalcode: this.postalcode,
+      city: this.city
     }
 
     console.log(newUser.password)
@@ -39,7 +47,7 @@ export class RegisterComponent implements OnInit {
     this.apiService.addUser(newUser).subscribe();
     console.log(newUser);
 
-    window.sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+    //window.sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
     
     this.router.navigate(['/']);
   }

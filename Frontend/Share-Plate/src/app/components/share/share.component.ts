@@ -14,11 +14,11 @@ export class ShareComponent implements OnInit {
   @Output() onShare: EventEmitter<Plate> = new EventEmitter();
   title! : string;
   description!: string;
-  pickuptime!: string;
-  endpickuptime!: string;
+  startpickuptime!: Date;
+  endpickuptime!: Date;
   portionsavailable!: string;
-  createduser!: number;
-  pickupuser!: number[];
+  createdby!: number;
+  pickupusers!: number[];
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -30,7 +30,7 @@ export class ShareComponent implements OnInit {
       alert('Please enter a title.');
       return;
     }
-    if (!this.pickuptime) {
+    if (!this.startpickuptime) {
       alert('Please enter a time when your plate is ready for pick-up.');
       return;
     }if (!this.endpickuptime) {
@@ -44,11 +44,13 @@ export class ShareComponent implements OnInit {
     const newPlate: Plate = {
       title: this.title,
       description: this.description,
-      pickuptime: this.pickuptime,
+      startpickuptime: (this.startpickuptime),
       endpickuptime: this.endpickuptime,
       portionsavailable: Number(this.portionsavailable),
-      createduser : this.createduser,
-      pickupuser: []
+      createdby : this.createdby,
+      pickupusers: [],
+      createdat: new Date(Date.now()),
+      modifiedat: new Date(Date.now())
     }
 
     this.onShare.emit(newPlate);

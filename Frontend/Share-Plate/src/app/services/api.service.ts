@@ -15,7 +15,7 @@ const httpOptions = {
 })
 
 export class ApiService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = 'http://localhost:8080/api/v1';
   // private apiUrl = 'backend';
   plates: Plate[] = [];
 
@@ -28,7 +28,7 @@ export class ApiService {
   }
 
   addUser(user: User): Observable<User> {
-    const url = `${this.apiUrl}/users`;
+    const url = `${this.apiUrl}/auth/register`;
     return this.client.post<User>(url, user, httpOptions);
   }
 
@@ -48,12 +48,12 @@ export class ApiService {
     return this.client.delete<Plate>(url)
   }
 
-  updatePlate(plate: Plate) : Observable<Plate> {
+  updatePlate(plate: Plate): Observable<Plate> {
     const url = `${this.apiUrl}/plates/${plate.id}`;
     return this.client.put<Plate>(url, plate, httpOptions)
   }
 
-  addPlate(plate: Plate):Observable<Plate> {
+  addPlate(plate: Plate): Observable<Plate> {
     return this.client.post<Plate>(this.apiUrl + '/plates/', plate, httpOptions)
   }
 }
