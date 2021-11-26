@@ -6,6 +6,7 @@ import com.ehb.student.plates.services.request.AbstractRequestMapperService;
 import com.ehb.student.plates.web.dto.UserDTO;
 import com.ehb.student.plates.web.requests.CreateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,10 @@ public class AuthenticationController {
     public UserDTO registerUser(@Valid @RequestBody CreateUserRequest request) {
         User user = requestMapper.basicMap(request, User.class);
         return requestMapper.basicMap(authService.registerUser(user), UserDTO.class);
+    }
+
+    @GetMapping(path = "/auth/user")
+    public UserDTO getLoggedInUser() {
+        return requestMapper.basicMap(authService.getLoggedInUser(), UserDTO.class);
     }
 }
