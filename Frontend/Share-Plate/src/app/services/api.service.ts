@@ -15,8 +15,8 @@ const httpOptions = {
 })
 
 export class ApiService {
-  private apiUrl = 'http://localhost:8080/api/v1';
-  // private apiUrl = 'backend';
+  //private apiUrl = 'http://localhost:8080/api/v1';
+  private apiUrl = 'https://plates.azurewebsites.net/api/v1';
   plates: Plate[] = [];
 
   constructor(private client: HttpClient) {
