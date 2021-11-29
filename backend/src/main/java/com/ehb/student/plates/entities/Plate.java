@@ -5,9 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -32,10 +32,9 @@ public class Plate extends AbstractEntity {
     @Column(name = "portions_available")
     private int portionsAvailable;
 
-    @ManyToOne()
+    @OneToOne
     private User createdUser;
 
-    // Verwijder @Transient wanneer de User entity is gemaakt, verplaats dan met ManyToMany
-    @Transient
-    private List<String> pickupUsers;
+    @OneToMany(mappedBy = "plate")
+    private List<PlateOrder> orders;
 }
