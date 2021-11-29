@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
@@ -31,8 +32,8 @@ public class Plate extends AbstractEntity {
     @Column(name = "portions_available")
     private int portionsAvailable;
 
-    // String te verplaatsen met User entity wanneer aangemaakt
-    private String createdBy;
+    @ManyToOne()
+    private User createdUser;
 
     // Verwijder @Transient wanneer de User entity is gemaakt, verplaats dan met ManyToMany
     @Transient

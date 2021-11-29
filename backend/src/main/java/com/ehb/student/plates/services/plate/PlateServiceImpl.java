@@ -29,6 +29,11 @@ public class PlateServiceImpl implements PlateService {
     }
 
     @Override
+    public Page<Plate> getPlatesByCreatedUserId(Long id, Pageable pageable) {
+        return plateRepository.getPlatesByCreatedUserId(id, pageable);
+    }
+
+    @Override
     public Plate createPlate(Plate plate) {
         return plateRepository.save(plate);
     }
