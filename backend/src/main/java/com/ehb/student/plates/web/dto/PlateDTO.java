@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -16,9 +17,9 @@ public class PlateDTO implements Serializable {
 
     private String description;
 
-    private Date startPickupTime;
+    private LocalDateTime startPickupTime;
 
-    private Date endPickupTime;
+    private LocalDateTime endPickupTime;
 
     private Integer portionsAvailable;
 

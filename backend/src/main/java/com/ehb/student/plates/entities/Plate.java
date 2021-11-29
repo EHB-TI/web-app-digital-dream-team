@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -33,6 +34,7 @@ public class Plate extends AbstractEntity {
     private int portionsAvailable;
 
     @OneToOne
+    @JoinColumn(name = "created_user_id")
     private User createdUser;
 
     @OneToMany(mappedBy = "plate")

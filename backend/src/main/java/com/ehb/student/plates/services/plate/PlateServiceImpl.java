@@ -85,6 +85,16 @@ public class PlateServiceImpl implements PlateService {
     @Override
     public PlateOrder createPlateOrder(PlateOrder plateOrder) {
         validatePlateOrderDate(plateOrder);
+
+        Plate plate = plateOrder.getPlate();
+        if (plate.getPortionsAvailable() > 0) {
+            plate.setPortionsAvailable(plate.getPortionsAvailable() - 1);
+            updatePlate(plate);
+        } else {
+            throw new InvalidParameterException("This plate has no portions left");
+        }
+
+
         return plateOrderRepository.save(plateOrder);
     }
 
@@ -109,6 +119,10 @@ public class PlateServiceImpl implements PlateService {
         if (isUsernameDifferentFromLoggedInUser(plateOrder.getUser().getUsername())) {
             throw new UnauthorizedActionException("Cannot delete an order that was not made by the user");
         }
+
+        Plate plate = plateOrder.getPlate();
+        plate.setPortionsAvailable(plate.getPortionsAvailable() + 1);
+        updatePlate(plate);
 
         plateOrderRepository.deleteById(id);
     }
