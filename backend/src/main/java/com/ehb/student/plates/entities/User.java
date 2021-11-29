@@ -8,11 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,11 +27,11 @@ public class User extends AbstractEntity implements UserDetails {
     private String email;
 
     @Getter
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
     @Getter
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Getter
@@ -43,19 +42,23 @@ public class User extends AbstractEntity implements UserDetails {
     private String password;
 
     @Getter
-    @Column(name = "resetPassword")
+    @Column(name = "reset_password")
     private String resetPassword;
 
     @Getter
-    @Column(name = "emailValidation")
+    @Column(name = "email_validation")
     private String emailValidation;
 
     @Getter
-    @Column(name = "loginAttempts")
+    @Column(name = "login_attempts")
     private int loginAttempts;
 
-    @Column(name = "accountEnabled")
+    @Column(name = "account_enabled")
     private boolean accountEnabled = true;
+
+    @Getter
+    @OneToMany(mappedBy = "user")
+    private List<PlateOrder> orders;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

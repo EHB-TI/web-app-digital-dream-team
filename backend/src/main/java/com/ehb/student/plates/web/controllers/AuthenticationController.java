@@ -10,11 +10,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping(path = "/auth")
 public class AuthenticationController {
 
     private final AuthenticationService authService;
@@ -26,14 +28,14 @@ public class AuthenticationController {
         this.requestMapper = requestMapper;
     }
 
-    @PostMapping(path = "/auth/register")
+    @PostMapping(path = "/register")
     public UserDTO registerUser(@Valid @RequestBody CreateUserRequest request) {
         User user = requestMapper.basicMap(request, User.class);
         return requestMapper.basicMap(authService.registerUser(user), UserDTO.class);
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping(path = "/auth/user")
+    @GetMapping(path = "/user")
     public UserDTO getLoggedInUser() {
         return requestMapper.basicMap(authService.getLoggedInUser(), UserDTO.class);
     }

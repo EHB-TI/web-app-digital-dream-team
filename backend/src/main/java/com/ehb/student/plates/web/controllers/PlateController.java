@@ -1,9 +1,12 @@
 package com.ehb.student.plates.web.controllers;
 
 import com.ehb.student.plates.entities.Plate;
+import com.ehb.student.plates.entities.PlateOrder;
 import com.ehb.student.plates.services.plate.PlateService;
 import com.ehb.student.plates.services.request.AbstractRequestMapperService;
 import com.ehb.student.plates.web.dto.PlateDTO;
+import com.ehb.student.plates.web.dto.PlateOrderDTO;
+import com.ehb.student.plates.web.requests.order.CreatePlateOrderRequest;
 import com.ehb.student.plates.web.requests.plate.CreatePlateRequest;
 import com.ehb.student.plates.web.requests.plate.UpdatePlateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping()
@@ -69,5 +74,26 @@ public class PlateController {
     @DeleteMapping(path = "/plates/{id}")
     public void deletePlate(@PathVariable Long id) {
         plateService.deletePlate(id);
+    }
+
+    @GetMapping(path = "plates/{plateId}/orders")
+    public List<PlateOrderDTO> getPlateOrders(@PathVariable Long plateId) {
+        return plateService.getPlateOrdersByPlateId(plateId).stream()
+                .map(requestMapper::mapToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping(path = "plates/{plateId}/orders")
+    public PlateOrderDTO createPlateOrder(@PathVariable Long plateId, @Valid @RequestBody CreatePlateOrderRequest request) {
+        request.setPlateId(plateId);
+        PlateOrder plateOrder = requestMapper.mapToEntity(request);
+        return requestMapper.mapToDTO(plateService.createPlateOrder(plateOrder));
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping(path = "plates/{plateId}/orders")
+    public void deletePlateOrder(@PathVariable Long plateId) {
+        plateService.deletePlateOrder(plateId);
     }
 }
