@@ -1,10 +1,12 @@
 package com.ehb.student.plates.filters.auth;
 
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -28,12 +30,20 @@ public class JWTParserFilter extends BasicAuthenticationFilter {
             return;
         }
 
-        UsernamePasswordAuthenticationToken authToken = getAuthenticationToken(request);
+        UsernamePasswordAuthenticationToken authToken = null;
+        try {
+            authToken = getAuthenticationToken(request);
+        } catch (JwtException e) {
+            response.setStatus(401);
+            response.sendError(401, "The provided authentication token is invalid or has expired.");
+            return;
+        }
+
         SecurityContextHolder.getContext().setAuthentication(authToken);
         chain.doFilter(request, response);
     }
 
-    private UsernamePasswordAuthenticationToken getAuthenticationToken(HttpServletRequest request) {
+    private UsernamePasswordAuthenticationToken getAuthenticationToken(HttpServletRequest request) throws JwtException {
         String token = request.getHeader("Authorization");
         if (token != null) {
             String username = getUsernameFromToken(token);
@@ -48,10 +58,10 @@ public class JWTParserFilter extends BasicAuthenticationFilter {
         return null;
     }
 
-    private String getUsernameFromToken(String token) {
+    private String getUsernameFromToken(String token) throws JwtException {
         return Jwts.parser()
                 .setSigningKey("PlatesSecretKey".getBytes())
-                .parseClaimsJws(token.replace("Bearer", ""))
+                .parseClaimsJws(StringUtils.replace(token,"Bearer", ""))
                 .getBody()
                 .getSubject();
     }
