@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping()
 public class PlateController {
 
     private final PlateService plateService;
@@ -40,7 +39,7 @@ public class PlateController {
         this.requestMapper = requestMapper;
     }
 
-    @GetMapping
+    @GetMapping("/plates")
     public Page<PlateDTO> getPlates(Pageable pageable) {
         return plateService.getPlates(pageable).map(requestMapper::mapToDTO);
     }

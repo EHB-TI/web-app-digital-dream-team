@@ -12,17 +12,18 @@ import java.util.Date;
 @Setter
 public class CreatePlateRequest implements Serializable {
 
-    @NotBlank(message = "title property missing or empty")
+    @NotNull(message = "title must be provided")
+    @NotBlank(message = "title must not be blank")
     private String title;
 
     private String description;
 
-    @NotNull(message = "startPickupTime property missing")
+    @NotNull(message = "startPickupTime must be provided")
     private Date startPickupTime;
 
-    @NotNull(message = "endPickupTime property missing")
+    @NotNull(message = "endPickupTime must be provided")
     private Date endPickupTime;
 
-    @NotNull(message = "portionsAvailable property missing")
+    @NotNull(message = "portionsAvailable must be provided")
     private Integer portionsAvailable;
 }

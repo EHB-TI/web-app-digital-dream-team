@@ -94,12 +94,4 @@ public class User extends AbstractEntity implements UserDetails {
     public boolean isEnabled() {
         return accountEnabled;
     }
-
-/*
-    @Column(name = "createdPlates")
-    private List<Plate> createdPlates;
-
-    @Column(name = "pickUpPlates")
-    private List<Plate> pickUpPlates;
- */
 }

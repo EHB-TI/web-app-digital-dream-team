@@ -3,6 +3,7 @@ package com.ehb.student.plates.services.plate;
 import com.ehb.student.plates.entities.Plate;
 import com.ehb.student.plates.entities.PlateOrder;
 import com.ehb.student.plates.exceptions.EntityNotFoundException;
+import com.ehb.student.plates.exceptions.InvalidParameterException;
 import com.ehb.student.plates.exceptions.UnauthorizedActionException;
 import com.ehb.student.plates.repositories.PlateOrderRepository;
 import com.ehb.student.plates.repositories.PlateRepository;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -45,11 +47,13 @@ public class PlateServiceImpl implements PlateService {
 
     @Override
     public Plate createPlate(Plate plate) {
+        validatePlateDates(plate);
         return plateRepository.save(plate);
     }
 
     @Override
     public Plate updatePlate(Plate plate) {
+        validatePlateDates(plate);
         Plate repoPlate = plateRepository.findById(plate.getId())
                 .orElseThrow(() -> new EntityNotFoundException(Plate.class, plate.getId()));
 
@@ -80,11 +84,13 @@ public class PlateServiceImpl implements PlateService {
 
     @Override
     public PlateOrder createPlateOrder(PlateOrder plateOrder) {
+        validatePlateOrderDate(plateOrder);
         return plateOrderRepository.save(plateOrder);
     }
 
     @Override
     public PlateOrder updatePlateOrder(PlateOrder plateOrder) {
+        validatePlateOrderDate(plateOrder);
         PlateOrder repoOrder = plateOrderRepository.findById(plateOrder.getId())
                 .orElseThrow(() -> new EntityNotFoundException(Plate.class, plateOrder.getId()));
 
@@ -110,5 +116,24 @@ public class PlateServiceImpl implements PlateService {
     private boolean isUsernameDifferentFromLoggedInUser(String username) {
         String authUsername = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return !username.equals(authUsername);
+    }
+
+    private void validatePlateDates(Plate plate) {
+        LocalDateTime startDate =  plate.getStartPickupTime();
+        LocalDateTime endDate = plate.getEndPickupTime();
+
+        if (!startDate.isBefore(endDate)) {
+            throw new InvalidParameterException("startPickupTime must be earlier than endPickupTime");
+        }
+    }
+
+    private void validatePlateOrderDate(PlateOrder plateOrder) {
+        LocalDateTime pickupTime = plateOrder.getPickupTime();
+        LocalDateTime startTime = plateOrder.getPlate().getStartPickupTime();
+        LocalDateTime endTime = plateOrder.getPlate().getEndPickupTime();
+
+        if (pickupTime.isBefore(startTime) || pickupTime.isAfter(endTime)) {
+            throw new InvalidParameterException("pickupTime must be between the startPickupTime and endPickupTime");
+        }
     }
 }
