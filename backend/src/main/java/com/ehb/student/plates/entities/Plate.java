@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,10 +24,10 @@ public class Plate extends AbstractEntity {
     private String description;
 
     @Column(name = "start_pickup_time")
-    private Date startPickupTime;
+    private LocalDateTime startPickupTime;
 
     @Column(name = "end_pickup_time")
-    private Date endPickupTime;
+    private LocalDateTime endPickupTime;
 
     @Column(name = "portions_available")
     private int portionsAvailable;
