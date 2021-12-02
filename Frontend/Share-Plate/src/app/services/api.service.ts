@@ -27,9 +27,17 @@ export class ApiService {
     return this.client.get<User>(url);
   }
 
+  //register user
   addUser(user: User): Observable<User> {
     const url = `${this.apiUrl}/auth/register`;
     return this.client.post<User>(url, user, httpOptions);
+  }
+
+  //get bearer token
+  getBearer(login: {username: string, password: string}): Observable<string[]> {
+    console.log(login);
+    const url = `${this.apiUrl}/auth/login`;
+    return this.client.post<string[]>(url, login, httpOptions);
   }
 
   // PLATE METHODS

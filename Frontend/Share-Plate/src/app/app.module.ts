@@ -14,6 +14,7 @@ import { PlatesComponent } from './components/plates/plates.component';
 import { PlateComponent } from './components/plate/plate.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShareComponent } from './components/share/share.component';
+import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
   {
@@ -35,6 +36,10 @@ const appRoutes: Routes = [
   {
     path: 'share',
     component: ShareComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ]
 
@@ -48,7 +53,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     ShareComponent,
     PlatesComponent,
-    PlateComponent
+    PlateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
