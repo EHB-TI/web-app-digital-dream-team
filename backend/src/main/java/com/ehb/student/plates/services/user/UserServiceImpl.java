@@ -35,4 +35,16 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(User.class, id));
+
+        if (isUsernameDifferentFromLoggedInUser(user.getUsername())) {
+            throw new UnauthorizedActionException("Cannot delete another user's account");
+        }
+
+        userRepository.deleteById(id);
+    }
 }
