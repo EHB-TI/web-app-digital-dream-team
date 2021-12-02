@@ -3,6 +3,7 @@ package com.ehb.student.plates.services.user;
 import com.ehb.student.plates.entities.User;
 import com.ehb.student.plates.repositories.UserRepository;
 import com.ehb.student.plates.exceptions.EntityNotFoundException;
+import com.ehb.student.plates.exceptions.UnauthorizedActionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
