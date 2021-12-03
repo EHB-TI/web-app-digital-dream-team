@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../models/User';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private router:Router) { }
+  user!: User;
+  loggedIn = false;
+  constructor(private router:Router, private apiService:ApiService) { }
 
   ngOnInit(): void {
+    this.apiService.getAuthentication().subscribe((user) => {
+      this.user = user;
+      if (user) {
+        this.loggedIn = true;
+      }
+    })
   }
 
   hasRoute(route:string){

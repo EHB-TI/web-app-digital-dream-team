@@ -4,11 +4,9 @@ export interface Plate {
   id?: number;
   title: string;
   description: string;
-  startpickuptime: Date;
-  endpickuptime: Date;
-  portionsavailable: number;
-  createdby: number;
+  startPickupTime: Date;
+  endPickupTime: Date;
+  portionsAvailable: number;
+  createdUser: User;
   pickupusers: number[];
-  createdat: Date;
-  modifiedat: Date;
 }

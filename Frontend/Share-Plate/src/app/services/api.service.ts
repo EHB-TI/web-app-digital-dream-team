@@ -4,12 +4,21 @@ import { Observable } from 'rxjs';
 import { Plate } from '../models/Plate'
 import { User } from '../models/User'
 import { Token } from '../models/Token';
+import { Pageable } from '../models/Pageable'
 
+const token = window.sessionStorage.getItem('token')
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   })
 }
+const httpOptionsWithToken = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + token
+  })
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +50,22 @@ export class ApiService {
     return this.client.post<Token>(url, login, httpOptions);
   }
 
+  getAuthentication(): Observable<User> {
+    const url = `${this.apiUrl}/auth/user`;
+    const token = window.sessionStorage.getItem('token')
+    // const option = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + token 
+    //   })
+    // }
+    return this.client.get<User>(url, httpOptionsWithToken)
+  }
+
   // PLATE METHODS
-  getPlates(): Observable<Plate[]> {
+  getPlates(): Observable<Pageable> {
     const url = `${this.apiUrl}/plates`;
-    return this.client.get<Plate[]>(url);
+    return this.client.get<Pageable>(url, httpOptionsWithToken);
   }
 
   getPlate(id: number): Observable<Plate> {
@@ -58,8 +79,9 @@ export class ApiService {
   }
 
   updatePlate(plate: Plate): Observable<Plate> {
+    console.log(plate);
     const url = `${this.apiUrl}/plates/${plate.id}`;
-    return this.client.put<Plate>(url, plate, httpOptions)
+    return this.client.put<Plate>(url, plate, httpOptionsWithToken)
   }
 
   addPlate(plate: Plate): Observable<Plate> {

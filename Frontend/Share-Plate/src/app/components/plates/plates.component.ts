@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { userInfo } from 'os';
 import { User } from 'src/app/models/User';
 import { Plate } from '../../models/Plate';
+import { Pageable } from '../../models/Pageable';
 import { ApiService } from '../../services/api.service'
 // import { HttpClient } from "@angular/common/http";
 
@@ -13,6 +14,10 @@ import { ApiService } from '../../services/api.service'
 
 export class PlatesComponent implements OnInit {
   plates: Plate[] = [];
+  pageable: Pageable = {
+    content: this.plates
+  }
+  
 
 
   constructor(private apiService: ApiService) { }
@@ -20,8 +25,11 @@ export class PlatesComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getPlates()
       .subscribe(
-        (plates) => (this.plates = plates)
-      )
+        (pageable) => {
+          this.pageable = pageable;
+          this.plates = pageable.content;
+          console.log(pageable.content)
+        })
   }
 
 
@@ -40,13 +48,13 @@ export class PlatesComponent implements OnInit {
   }
 
   takeAPlate(plate: Plate) {
-    if (plate.portionsavailable > 0) {
+    if (plate.portionsAvailable > 0) {
       // if (user.id != null) {
-        plate.portionsavailable -= 1;
+        plate.portionsAvailable -= 1;
         // notifySharingUser()  // to do
         // temp hardcoded, need a function in apiservice to return to current user (id)
         // plate.pickupuser.push(1);
-        console.log(plate.portionsavailable)
+        console.log(plate.portionsAvailable)
         this.apiService.updatePlate(plate).subscribe(
         // (plate) => (this.plates.push(plate))
         () => (this.plates = this.plates)

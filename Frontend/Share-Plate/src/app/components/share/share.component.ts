@@ -14,10 +14,10 @@ export class ShareComponent implements OnInit {
   @Output() onShare: EventEmitter<Plate> = new EventEmitter();
   title! : string;
   description!: string;
-  startpickuptime!: Date;
-  endpickuptime!: Date;
-  portionsavailable!: string;
-  createdby!: number;
+  startPickupTime!: Date;
+  endPickupTime!: Date;
+  portionsAvailable!: string;
+  createdUser!: User;
   pickupusers!: number[];
 
   constructor(private apiService: ApiService, private router: Router) { }
@@ -30,13 +30,13 @@ export class ShareComponent implements OnInit {
       alert('Please enter a title.');
       return;
     }
-    if (!this.startpickuptime) {
+    if (!this.startPickupTime) {
       alert('Please enter a time when your plate is ready for pick-up.');
       return;
-    }if (!this.endpickuptime) {
+    }if (!this.endPickupTime) {
       alert('Please enter end hour for pick-up.');
       return;
-    }if (!this.portionsavailable) {
+    }if (!this.portionsAvailable) {
       alert('Please enter the number of portions available.');
       return;
     }
@@ -44,13 +44,11 @@ export class ShareComponent implements OnInit {
     const newPlate: Plate = {
       title: this.title,
       description: this.description,
-      startpickuptime: (this.startpickuptime),
-      endpickuptime: this.endpickuptime,
-      portionsavailable: Number(this.portionsavailable),
-      createdby : this.createdby,
-      pickupusers: [],
-      createdat: new Date(Date.now()),
-      modifiedat: new Date(Date.now())
+      startPickupTime: (this.startPickupTime),
+      endPickupTime: this.endPickupTime,
+      portionsAvailable: Number(this.portionsAvailable),
+      createdUser : this.createdUser,
+      pickupusers: []
     }
 
     this.onShare.emit(newPlate);

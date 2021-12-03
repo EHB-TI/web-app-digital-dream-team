@@ -11,8 +11,8 @@ export class PlateComponent implements OnInit {
   @Input()
   plate!: Plate;
 
-  @Input()
-  user!: User;
+  // @Input()
+  // user!: User;
 
   @Output()
   onTakeAPlate: EventEmitter<Plate> = new EventEmitter();
@@ -24,7 +24,8 @@ export class PlateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.plate.pickupusers = [];
+    console.log(this.plate)
+    //this.plate.pickupusers = [];
   }
 
   onToggle(plate: Plate) {
