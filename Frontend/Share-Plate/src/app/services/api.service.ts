@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Plate } from '../models/Plate'
 import { User } from '../models/User'
+import { Token } from '../models/Token';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,8 +16,8 @@ const httpOptions = {
 })
 
 export class ApiService {
-  //private apiUrl = 'http://localhost:8080/api/v1';
-  private apiUrl = 'https://plates.azurewebsites.net/api/v1';
+  private apiUrl = 'http://localhost:8080/api/v1';
+  //private apiUrl = 'https://plates.azurewebsites.net/api/v1';
   plates: Plate[] = [];
 
   constructor(private client: HttpClient) {
@@ -34,10 +35,10 @@ export class ApiService {
   }
 
   //get bearer token
-  getBearer(login: {username: string, password: string}): Observable<string[]> {
+  getBearer(login: {username: string, password: string}): Observable<Token> {
     console.log(login);
     const url = `${this.apiUrl}/auth/login`;
-    return this.client.post<string[]>(url, login, httpOptions);
+    return this.client.post<Token>(url, login, httpOptions);
   }
 
   // PLATE METHODS

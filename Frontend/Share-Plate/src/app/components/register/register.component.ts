@@ -44,12 +44,13 @@ export class RegisterComponent implements OnInit {
 
     console.log(newUser.password)
 
-    this.apiService.addUser(newUser).subscribe();
-    console.log(newUser);
+    this.apiService.addUser(newUser).subscribe(() => {
+      console.log(newUser);
+      this.router.navigate(['/']);
+    });
 
     //window.sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
     
-    this.router.navigate(['/']);
   }
 
 }
