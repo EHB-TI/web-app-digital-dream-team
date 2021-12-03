@@ -61,7 +61,12 @@
 
 
 * SQL Injection - Spring Data
+> ### By using the spring framework and using parameters for user input that is used to construct sql statements, thus constructing safe parametrized sql statements.
+
 * Identity Spoofing - Login Token/Login Throttling
+> ##### By using a JWT verification Token, we prevent spoofing attempts 
+
+
 * Botting - Captcha/Email Verification
 
 # Additional best security practices used
