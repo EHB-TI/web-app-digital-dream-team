@@ -52,5 +52,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .setExpiration(new Date(System.currentTimeMillis() + 1_800_000))
                 .signWith(SignatureAlgorithm.HS512, "PlatesSecretKey".getBytes())
                 .compact();
+        response.addHeader("Authorization", "Bearer " + token);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().print("{\"username\":\"" + user.getUsername() + "\", \"token\":\"" + token + "\"}");
+        response.getWriter().flush();
     }
 }
