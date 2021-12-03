@@ -53,7 +53,7 @@
 
 
 # Threat model
-![image](https://user-images.githubusercontent.com/57287911/137589168-22df9323-6176-42a0-bde8-3e9639ad152b.png)
+![image](https://github.com/EHB-TI/web-app-digital-dream-team/blob/main/threat.png)
 * DDos - Cloudflare
 * Man In The Middle - Https
 * Cross Site Scripting - CSRF
