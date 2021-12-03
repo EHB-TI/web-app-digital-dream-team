@@ -55,4 +55,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         response.addHeader("Authorization", "Bearer " + token);
     }
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) throws IOException {
+        User user = (User) auth.getPrincipal();
+        String token = Jwts.builder()
+                .setSubject(user.getUsername())
+                .setExpiration(new Date(System.currentTimeMillis() + 1_800_000))
+                .signWith(SignatureAlgorithm.HS512, "PlatesSecretKey".getBytes())
+                .compact();
+    }
 }
