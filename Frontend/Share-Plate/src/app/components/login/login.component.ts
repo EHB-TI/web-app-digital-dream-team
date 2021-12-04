@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Token } from '../../models/Token';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,23 +15,13 @@ export class LoginComponent implements OnInit {
   token!: Token;
   
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private authService:AuthService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    
-    var login: any = { username: this.username, password: this.password }
-    console.log(login);
-
-    this.apiService.getBearer(login).subscribe((token) => {
-      this.token = token
-      if (token) {
-        window.sessionStorage.setItem('token', token.token);
-        console.log(this.token);
-        this.router.navigate(['/']);
-      }
-    });
+    this.authService.onUserChange.subscribe(() => this.router.navigate(['/']))
+    this.authService.login(this.username, this.password)
   }
 }
