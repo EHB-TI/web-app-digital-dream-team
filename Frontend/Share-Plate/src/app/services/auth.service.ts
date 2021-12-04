@@ -23,14 +23,12 @@ export class AuthService {
 
   login(username: string, password: string): void {
     var login: any = { username: username, password: password }
-    console.log(login);
     this.apiService.getBearer(login).subscribe((token) => {
       this.token = token
       if (token) {
         window.sessionStorage.setItem('token', token.token);
         this.apiService.getAuthentication(token.token).subscribe((user) => {
           this.user = user;
-          console.log(user);
           this.onUserChange.next(user);
         })
         console.log(this.token);
@@ -47,13 +45,10 @@ export class AuthService {
     const sessionToken: string | null = window.sessionStorage.getItem('token');
     if (sessionToken) {
       this.apiService.getAuthentication(sessionToken).subscribe((user) => {
+        console.log(user)
         if (user) {
           this.user = user;
           this.onUserChange.next(user);
-          //already logged in
-          if (this.router.url === '/login'){
-            this.router.navigate(['/']);
-          }
         }
       });
     }

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../../models/User';
 import { Plate } from '../../models/Plate';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,19 +11,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./share.component.css']
 })
 export class ShareComponent implements OnInit {
+  user!: User | null;
 
   @Output() onShare: EventEmitter<Plate> = new EventEmitter();
   title! : string;
   description!: string;
-  startPickupTime!: Date;
-  endPickupTime!: Date;
+  startPickupTime!: string;
+  endPickupTime!: string;
   portionsAvailable!: string;
   createdUser!: User;
   pickupusers!: number[];
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.onUserChange.subscribe((user) => this.user = user);
+    this.user = this.authService.user;
+    if (!this.user) {
+      console.log("kom ik bij plate")
+      this.router.navigate(['/']);
+    }
   }
 
   onSubmit() {
@@ -44,8 +52,8 @@ export class ShareComponent implements OnInit {
     const newPlate: Plate = {
       title: this.title,
       description: this.description,
-      startPickupTime: (this.startPickupTime),
-      endPickupTime: this.endPickupTime,
+      startPickupTime: this.startPickupTime.replace('T', ' '),
+      endPickupTime: this.endPickupTime.replace('T', ' '),
       portionsAvailable: Number(this.portionsAvailable),
       createdUser : this.createdUser,
       pickupusers: []
@@ -53,9 +61,7 @@ export class ShareComponent implements OnInit {
 
     this.onShare.emit(newPlate);
 
-    this.apiService.addPlate(newPlate).subscribe();
-
-    this.router.navigate(['/plates']);
+    this.apiService.addPlate(newPlate).subscribe(() => this.router.navigate(['/plates']));
   }
 
 

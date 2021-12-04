@@ -49,7 +49,6 @@ export class ApiService {
 
   //get bearer token
   getBearer(login: {username: string, password: string}): Observable<Token> {
-    console.log(login);
     const url = `${this.apiUrl}/auth/login`;
     return this.client.post<Token>(url, login, httpOptions);
   }
@@ -85,6 +84,7 @@ export class ApiService {
   }
 
   addPlate(plate: Plate): Observable<Plate> {
+    console.log(plate)
     var option = {headers: this.makeHeaderWithToken()}
     return this.client.post<Plate>(this.apiUrl + '/plates/', plate, option)
   }

@@ -4,8 +4,8 @@ export interface Plate {
   id?: number;
   title: string;
   description: string;
-  startPickupTime: Date;
-  endPickupTime: Date;
+  startPickupTime: string;
+  endPickupTime: string;
   portionsAvailable: number;
   createdUser: User;
   pickupusers: number[];

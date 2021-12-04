@@ -5,7 +5,7 @@
         <div class="card-header"> {{plate.title}}</div>
         <div class="card-body">
           <div class="form-group row">
-            <div class="col-sm-6">
+            <div class="col-sm-9">
               description: {{plate.description}}<br />
               portions: {{plate.portionsAvailable}}<br />
               Pick-up starts at: {{plate.startPickupTime}}<br/> -->
@@ -14,10 +14,10 @@
               <!-- must be replaced by address when implemented -->
 
             </div>
-            <div class="col-sm-3">
+            <div *ngIf="user && user.id != plate.createdUser.id" class="col-sm-3">
               <input (click)="onToggle(plate)" class="btn btn-primary custom-btn" value="pick" />
             </div>
-            <div class="col-sm-3">
+            <div *ngIf="user && user.id == plate.createdUser.id" class="col-sm-3">
               <input (click)="onToggleDelete(plate)" class="btn btn-warning custom-btn" value="delete" />
             </div>
           </div>
