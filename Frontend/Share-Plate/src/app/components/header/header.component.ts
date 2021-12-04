@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/User';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +10,18 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  user!: User;
-  loggedIn = false;
-  constructor(private router:Router, private apiService:ApiService) { }
+  user!: User | null;
+  
+  constructor(private router:Router, private apiService:ApiService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.apiService.getAuthentication().subscribe((user) => {
-      this.user = user;
-      if (user) {
-        this.loggedIn = true;
-      }
-    })
+    this.authService.onUserChange.subscribe((user) => this.user = user);
+    this.authService.getUserWithBearer();
+  }
+
+  logOut(): void {
+    this.authService.logout();
+    window.sessionStorage.removeItem('token');
   }
 
   hasRoute(route:string){
