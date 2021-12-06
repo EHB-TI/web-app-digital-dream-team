@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -75,6 +74,14 @@ public class PlateController {
     @DeleteMapping(path = "/plates/{id}")
     public void deletePlate(@PathVariable Long id) {
         plateService.deletePlate(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping(path = "/plates/{id}/portions")
+    public PlateDTO updatePlatesLeft(@PathVariable Integer id, @RequestBody @Valid UpdatePlateRequest request) {
+        Plate plate = requestMapper.mapToEntity(request);
+        request.setId(id);
+        return requestMapper.mapToDTO(plateService.updatePlatesLeft(plate));
     }
 
     @GetMapping(path = "plates/{plateId}/orders")

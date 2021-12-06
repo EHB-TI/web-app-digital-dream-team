@@ -19,6 +19,8 @@ public interface PlateService {
 
     Plate updatePlate(Plate plate);
 
+    Plate updatePlatesLeft(Plate plate);
+
     void deletePlate(Long id);
 
     List<PlateOrder> getPlateOrdersByPlateId(Long plateId);

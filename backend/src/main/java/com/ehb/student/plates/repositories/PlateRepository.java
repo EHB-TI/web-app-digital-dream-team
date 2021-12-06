@@ -19,4 +19,7 @@ public interface PlateRepository extends JpaRepository<Plate, Long> {
             countQuery = "SELECT COUNT(plate) FROM Plate plate WHERE plate.createdUser.id=:id"
     )
     Page<Plate> getPlatesByCreatedUserId(Long id, Pageable pageable);
+
+    @Query("UPDATE plates SET portions_available=:plate.portionsAvailable WHERE id=:plate.id")
+    Plate updatePlatesLeft(Plate plate);
 }
