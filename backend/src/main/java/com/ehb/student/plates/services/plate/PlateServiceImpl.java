@@ -58,9 +58,12 @@ public class PlateServiceImpl implements PlateService {
                 .orElseThrow(() -> new EntityNotFoundException(Plate.class, plate.getId()));
 
         plate.setCreatedUser(repoPlate.getCreatedUser());
+        /*
         if (isUsernameDifferentFromLoggedInUser(repoPlate.getCreatedUser().getUsername())) {
             throw new UnauthorizedActionException("Cannot modify a plate that was not made by the user");
         }
+
+         */
 
         return plateRepository.save(plate);
     }
@@ -104,12 +107,10 @@ public class PlateServiceImpl implements PlateService {
         PlateOrder repoOrder = plateOrderRepository.findById(plateOrder.getId())
                 .orElseThrow(() -> new EntityNotFoundException(Plate.class, plateOrder.getId()));
 
-        /*
         if (isUsernameDifferentFromLoggedInUser(repoOrder.getUser().getUsername())) {
             throw new UnauthorizedActionException("Cannot modify an order that was not made by the user");
         }
-        */
-        
+
         return plateOrderRepository.save(plateOrder);
     }
 
