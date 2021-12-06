@@ -91,6 +91,7 @@ public class PlateController {
                 .collect(Collectors.toList());
     }
 
+    /*
     @PreAuthorize("isAuthenticated()")
     @PostMapping(path = "plates/{plateId}/orders")
     public PlateOrderDTO createPlateOrder(@PathVariable Long plateId, @Valid @RequestBody CreatePlateOrderRequest request) {
@@ -98,6 +99,7 @@ public class PlateController {
         PlateOrder plateOrder = requestMapper.mapToEntity(request);
         return requestMapper.mapToDTO(plateService.createPlateOrder(plateOrder));
     }
+     */
 
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping(path = "plates/{plateId}/orders")
