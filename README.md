@@ -53,7 +53,7 @@
 
 
 # Threat model
-![image](https://user-images.githubusercontent.com/57287911/137589168-22df9323-6176-42a0-bde8-3e9639ad152b.png)
+![image](https://github.com/EHB-TI/web-app-digital-dream-team/blob/main/threat.png)
 * DDos - Cloudflare
 * Man In The Middle - Https
 * Cross Site Scripting - CSRF
@@ -61,7 +61,12 @@
 
 
 * SQL Injection - Spring Data
+> ##### By using the spring framework and using parameters for user input that is used to construct sql statements, thus constructing safe parametrized sql statements.
+
 * Identity Spoofing - Login Token/Login Throttling
+> ##### By using a JWT verification Token, we prevent spoofing attempts 
+
+
 * Botting - Captcha/Email Verification
 
 # Additional best security practices used
@@ -74,7 +79,8 @@
 > produce log files for monitoring purposes
 
 # Deployment
-*minimally, this section contains a public URL of the app. A description of how your software is deployed is a bonus. Do you do this manually, or did you manage to automate? Have you taken into account the security of your deployment process?*
+
+https://www.digitaldreamteam.be
 
 
 
