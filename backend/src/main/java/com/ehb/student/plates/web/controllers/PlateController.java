@@ -76,14 +76,6 @@ public class PlateController {
         plateService.deletePlate(id);
     }
 
-    @PreAuthorize("isAuthenticated()")
-    @PutMapping(path = "/plates/{id}/portions")
-    public PlateDTO updatePlatesLeft(@PathVariable Integer id, @RequestBody @Valid UpdatePlateRequest request) {
-        Plate plate = requestMapper.mapToEntity(request);
-        request.setId(id);
-        return requestMapper.mapToDTO(plateService.updatePlatesLeft(plate));
-    }
-
     @GetMapping(path = "plates/{plateId}/orders")
     public List<PlateOrderDTO> getPlateOrders(@PathVariable Long plateId) {
         return plateService.getPlateOrdersByPlateId(plateId).stream()
@@ -91,7 +83,6 @@ public class PlateController {
                 .collect(Collectors.toList());
     }
 
-    /*
     @PreAuthorize("isAuthenticated()")
     @PostMapping(path = "plates/{plateId}/orders")
     public PlateOrderDTO createPlateOrder(@PathVariable Long plateId, @Valid @RequestBody CreatePlateOrderRequest request) {
@@ -99,7 +90,6 @@ public class PlateController {
         PlateOrder plateOrder = requestMapper.mapToEntity(request);
         return requestMapper.mapToDTO(plateService.createPlateOrder(plateOrder));
     }
-     */
 
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping(path = "plates/{plateId}/orders")

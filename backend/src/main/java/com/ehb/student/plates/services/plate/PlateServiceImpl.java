@@ -66,17 +66,6 @@ public class PlateServiceImpl implements PlateService {
     }
 
     @Override
-    public Plate updatePlatesLeft(Plate plate) {
-        validatePlateDates(plate);
-        Plate repoPlate = plateRepository.findById(plate.getId())
-                .orElseThrow(() -> new EntityNotFoundException(Plate.class, plate.getId()));
-
-        plate.setCreatedUser(repoPlate.getCreatedUser());
-
-        return plateRepository.save(plate);
-    }
-
-    @Override
     public void deletePlate(Long id) {
         Plate plate = plateRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(Plate.class, id));
