@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -46,18 +47,14 @@ public class User extends AbstractEntity implements UserDetails {
     private String resetPassword;
 
     @Getter
-    @Column(name = "email_validation")
-    private String emailValidation;
-
-    @Getter
     @Column(name = "login_attempts")
     private int loginAttempts;
 
     @Column(name = "account_enabled")
-    private boolean accountEnabled = true;
+    private boolean accountEnabled;
 
     @Getter
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<PlateOrder> orders;
 
     @Override

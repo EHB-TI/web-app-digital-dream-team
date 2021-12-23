@@ -8,15 +8,20 @@ public class EntityNotFoundException extends RuntimeException {
 
     private final Class<?> entityClass;
 
-    private final Number id;
+    private final String id;
 
-    public EntityNotFoundException(Class<?> entityClass, Number id) {
+    public EntityNotFoundException(Class<?> entityClass, String id) {
         this.entityClass = entityClass;
         this.id = id;
     }
 
+    public EntityNotFoundException(Class<?> entityClass, Number id) {
+        this.entityClass = entityClass;
+        this.id = String.valueOf(id);
+    }
+
     @Override
     public String getMessage() {
-        return String.format("Can't find %s with ID %d", entityClass.getSimpleName(), id.longValue());
+        return String.format("Can't find %s with identifier %s", entityClass.getSimpleName(), id);
     }
 }

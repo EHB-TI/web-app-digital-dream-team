@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@CrossOrigin
 public class JWTParserFilter extends BasicAuthenticationFilter {
 
     public JWTParserFilter(AuthenticationManager authenticationManager) {

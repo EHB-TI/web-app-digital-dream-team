@@ -36,6 +36,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void activateUser(User user) {
+        user.setAccountEnabled(true);
+        userRepository.save(user);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
     }
