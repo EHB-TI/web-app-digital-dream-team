@@ -14,7 +14,7 @@ public class CreatePlateOrderRequest implements Serializable {
 
     private Long plateId;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     @NotNull(message = "pickupTime must be provided")
     private LocalDateTime pickupTime;
 }

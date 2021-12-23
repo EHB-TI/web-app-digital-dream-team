@@ -1,5 +1,6 @@
 package com.ehb.student.plates.web.requests;
 
+import com.ehb.student.plates.annotations.validation.ValidPassword;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,38 +14,30 @@ import java.io.Serializable;
 @Setter
 public class CreateUserRequest implements Serializable {
 
-    @NotNull(message = "username must be provided")
-    @NotBlank(message = "username must not be blank")
+    @NotBlank(message = "Username must not be blank")
     private String username;
 
-    @NotNull(message = "firstName must be provided")
-    @NotBlank(message = "firstName must not be blank")
+    @NotBlank(message = "First Name must not be blank")
     private String firstName;
 
-    @NotNull(message = "lastName must be provided")
-    @NotBlank(message = "lastName must not be blank")
+    @NotBlank(message = "Last Name must not be blank")
     private String lastName;
 
-    @Email(message = "email is not valid")
+    @Email(message = "Email Address is not valid")
     private String email;
 
-    @NotNull(message = "password must be provided")
-    @NotBlank(message = "password must not be blank")
+    @ValidPassword
     private String password;
 
-    @NotNull(message = "street must be provided")
-    @NotBlank(message = "street must not be blank")
+    @NotBlank(message = "Street must not be blank")
     private String street;
 
-    @NotNull(message = "number must be provided")
-    @NotBlank(message = "number must not be blank")
+    @NotBlank(message = "House Number must not be blank")
     private String number;
 
-    @NotNull(message = "postalCode must be provided")
-    @NotBlank(message = "postalCode must not be blank")
+    @NotBlank(message = "Postal Code must not be blank")
     private String postalCode;
 
-    @NotNull(message = "city must be provided")
-    @NotBlank(message = "city must not be blank")
+    @NotBlank(message = "City must not be blank")
     private String city;
 }
