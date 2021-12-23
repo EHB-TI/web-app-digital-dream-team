@@ -1,0 +1,29 @@
+<div *ngIf="plate.portionsavailable > 0">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header"> {{plate.title}}</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="col-sm-6">
+              description: {{plate.description}}<br />
+              portions: {{plate.portionsavailable}}<br />
+              Pick-up starts at: {{plate.startpickuptime}}<br/> -->
+              Pick-up ends at: {{plate.endpickuptime}}
+              Pick up address: {{plate.createdby}}
+              <!-- must be replaced by address when implemented -->
+              Created/modified at: {{plate.modifiedat}}
+
+            </div>
+            <div class="col-sm-3">
+              <input (click)="onToggle(plate)" class="btn btn-primary custom-btn" value="pick" />
+            </div>
+            <div class="col-sm-3">
+              <input (click)="onToggleDelete(plate)" class="btn btn-warning custom-btn" value="delete" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

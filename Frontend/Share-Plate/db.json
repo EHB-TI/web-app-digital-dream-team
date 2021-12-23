@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "janj",
+      "firstname": "jan",
+      "lastname": "jansen",
+      "email": "janjansen@shareplate.be",
+      "password": ""
+    },
+    {
+      "id": 2,
+      "username": "pietp",
+      "firstname": "piet",
+      "lastname": "pieters",
+      "email": "pietpieters@shareplate.be",
+      "password": ""
+    },
+    {
+      "id": 3,
+      "username": "boomd",
+      "firstname": "boom boom ",
+      "lastname": "dimi",
+      "email": "boomboomdimi@shareplate.be",
+      "password": ""
+    }
+  ],
+  "plates": [
+    {
+      "title": "ttt",
+      "description": "fgfg",
+      "pickuptime": "fgf",
+      "endpickuptime": "gfgf",
+      "portionsavailable": 0,
+      "pickupuser": [],
+      "id": 4,
+      "pickupusers": []
+    },
+    {
+      "title": "test",
+      "description": "test2",
+      "startpickuptime": "2021-11-10",
+      "endpickuptime": "2021-11-25",
+      "portionsavailable": 6,
+      "createdby": "1",
+      "pickupusers": [],
+      "createdat": "2021-11-20T14:43:53.943Z",
+      "modifiedat": "2021-11-20T14:43:53.943Z",
+      "id": 5
+    },
+    {
+      "title": "test",
+      "description": "test2",
+      "startpickuptime": "2021-11-06T18:52",
+      "endpickuptime": "2021-11-06T20:53",
+      "portionsavailable": 2,
+      "createdby": "1",
+      "pickupusers": [],
+      "createdat": "2021-11-20T14:53:19.970Z",
+      "modifiedat": "2021-11-20T14:53:19.970Z",
+      "id": 6
+    },
+    {
+      "title": "test 3",
+      "description": "test 33333",
+      "startpickuptime": "2021-11-14T15:54",
+      "endpickuptime": "2021-12-03T17:54",
+      "portionsavailable": 17,
+      "createdby": "1",
+      "pickupusers": [],
+      "createdat": "2021-11-20T14:54:59.473Z",
+      "modifiedat": "2021-11-20T14:54:59.473Z",
+      "id": 7
+    }
+  ]
+}

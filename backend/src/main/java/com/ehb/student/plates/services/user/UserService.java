@@ -11,5 +11,7 @@ public interface UserService extends UserDetailsService {
 
     Page<User> getUsers(Pageable pageable);
 
+    void deleteUser(Long id);
+
     void activateUser(User user);
 }

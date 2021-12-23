@@ -44,14 +44,17 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) throws IOException {
         User user = (User) auth.getPrincipal();
         String token = Jwts.builder()
                 .setSubject(user.getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + 1_800_000))
                 .signWith(SignatureAlgorithm.HS512, "PlatesSecretKey".getBytes())
                 .compact();
-
         response.addHeader("Authorization", "Bearer " + token);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().print("{\"username\":\"" + user.getUsername() + "\", \"token\":\"" + token + "\"}");
+        response.getWriter().flush();
     }
 }

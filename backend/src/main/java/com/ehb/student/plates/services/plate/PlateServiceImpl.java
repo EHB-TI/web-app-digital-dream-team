@@ -89,7 +89,8 @@ public class PlateServiceImpl implements PlateService {
         Plate plate = plateOrder.getPlate();
         if (plate.getPortionsAvailable() > 0) {
             plate.setPortionsAvailable(plate.getPortionsAvailable() - 1);
-            updatePlate(plate);
+            //updatePlate(plate);
+            plateRepository.save(plate);
         } else {
             throw new InvalidParameterException("This plate has no portions left");
         }
