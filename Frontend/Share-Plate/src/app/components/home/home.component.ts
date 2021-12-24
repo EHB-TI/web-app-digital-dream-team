@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.authService.onUserChange.subscribe((user) => this.user = user);
     this.user = this.authService.user;
-    //this.authService.getUserWithBearer();
   }
 
 }

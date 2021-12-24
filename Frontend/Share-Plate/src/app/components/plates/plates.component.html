@@ -15,7 +15,7 @@
 > </app-share> -->
 <br/>
 
-<app-plate *ngFor="let plate of plates" [plate]="plate" (onTakeAPlate)="takeAPlate(plate)" (onDeletePlate)="deletePlate(plate)">
+<app-plate *ngFor="let plate of plates" [plate]="plate" (onDeletePlate)="deletePlate(plate)">
 
   <!-- title: {{plate.title}} <br/>
   description: {{plate.description}}<br/>

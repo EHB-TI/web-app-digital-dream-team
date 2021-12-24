@@ -88,4 +88,12 @@ export class ApiService {
     var option = {headers: this.makeHeaderWithToken()}
     return this.client.post<Plate>(this.apiUrl + '/plates/', plate, option)
   }
+
+  orderPlate(plate: Plate, pickupTime: string) {
+    const url = `${this.apiUrl}/plates/${plate.id}/orders`;
+    const pickup: any = { pickupTime: pickupTime + ":00" };
+    var option = {headers: this.makeHeaderWithToken()};
+    console.log(pickup);
+    return this.client.post<Plate>(url, pickup, option);
+  }
 }

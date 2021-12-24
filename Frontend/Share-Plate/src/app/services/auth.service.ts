@@ -12,6 +12,7 @@ export class AuthService {
   onUserChange: Subject<User | null> = new Subject<User | null>();
   user: User | null = null;
   token!: Token;
+  succes: boolean = false;
   
   constructor(private apiService:ApiService, private router:Router) { 
 
@@ -32,6 +33,11 @@ export class AuthService {
           this.onUserChange.next(user);
         })
         console.log(this.token);
+      }
+    },
+    error => {
+      if(error != null){
+          alert("Wrong username or/and password");
       }
     });
   }

@@ -5,7 +5,7 @@
         <div class="card-header"> {{plate.title}}</div>
         <div class="card-body">
           <div class="form-group row">
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               description: {{plate.description}}<br />
               portions: {{plate.portionsAvailable}}<br />
               Pick-up starts at: {{plate.startPickupTime}}<br/> -->
@@ -14,9 +14,21 @@
               <!-- must be replaced by address when implemented -->
 
             </div>
-            <div *ngIf="user && user.id != plate.createdUser.id" class="col-sm-3">
-              <input (click)="onToggle(plate)" class="btn btn-primary custom-btn" value="pick" />
-            </div>
+            <form *ngIf="user && user.id != plate.createdUser.id && plate.portionsAvailable > 0" class="col-sm-4" (ngSubmit)="onSubmit()">
+              <div>
+                <div class="form-group">
+                  <label for="startPickupTime" class="col-form-label text-md-right">
+                    Pick-up time:
+                  </label>
+                  <div>
+                    <input id="pickupTime" class="form-control" type="datetime-local" name="pickupTime" [(ngModel)]="pickupTime" />
+                  </div>
+                </div>
+                <button type=submit class="btn btn-primary">
+                  Pick
+                </button>
+              </div>
+            </form>
             <div *ngIf="user && user.id == plate.createdUser.id" class="col-sm-3">
               <input (click)="onToggleDelete(plate)" class="btn btn-warning custom-btn" value="delete" />
             </div>

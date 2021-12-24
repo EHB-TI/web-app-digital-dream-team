@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Plate } from 'src/app/models/Plate';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-plate',
@@ -10,9 +11,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PlateComponent implements OnInit {
   user!: User | null;
+  pickupTime!: string;
   
   @Input()
   plate!: Plate;
+  
 
   // @Input()
   // user!: User;
@@ -23,7 +26,7 @@ export class PlateComponent implements OnInit {
   @Output()
   onDeletePlate: EventEmitter<Plate> = new EventEmitter();
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private apiService: ApiService) {
   }
 
   ngOnInit(): void {
@@ -33,8 +36,9 @@ export class PlateComponent implements OnInit {
     //this.plate.pickupusers = [];
   }
 
-  onToggle(plate: Plate) {
-    this.onTakeAPlate.emit(plate);
+  onSubmit(): void{
+    this.pickupTime = this.pickupTime.replace('T', ' ')
+    this.apiService.orderPlate(this.plate, this.pickupTime).subscribe(() => this.plate.portionsAvailable -= 1);
   }
 
   onToggleDelete(plate: Plate) {

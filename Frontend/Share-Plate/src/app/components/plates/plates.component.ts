@@ -47,7 +47,7 @@ export class PlatesComponent implements OnInit {
       );
   }
 
-  takeAPlate(plate: Plate) {
+  takeAPlate(plate: Plate, pickupTime: string) {
     if (plate.portionsAvailable > 0) {
       // if (user.id != null) {
         plate.portionsAvailable -= 1;
