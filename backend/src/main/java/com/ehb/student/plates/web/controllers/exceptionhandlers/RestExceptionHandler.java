@@ -36,7 +36,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, errorDTO, headers, errorDTO.getStatus(), request);
     }
 
-    @ExceptionHandler({InvalidParameterException.class, VerificationTokenInvalidException.class, EntityNotFoundException.class})
+    @ExceptionHandler({InvalidParameterException.class, VerificationTokenInvalidException.class})
     public ResponseEntity<Object> handleInvalidParameterException(Exception ex) {
         return createResponseFromExceptionMessage(ex, HttpStatus.BAD_REQUEST);
     }
