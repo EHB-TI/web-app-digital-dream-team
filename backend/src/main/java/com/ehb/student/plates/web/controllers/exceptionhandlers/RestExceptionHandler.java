@@ -1,6 +1,8 @@
 package com.ehb.student.plates.web.controllers.exceptionhandlers;
 
+import com.ehb.student.plates.exceptions.EntityNotFoundException;
 import com.ehb.student.plates.exceptions.InvalidParameterException;
+import com.ehb.student.plates.exceptions.UnauthorizedActionException;
 import com.ehb.student.plates.exceptions.VerificationTokenInvalidException;
 import com.ehb.student.plates.web.dto.ErrorDTO;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,13 +36,23 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, errorDTO, headers, errorDTO.getStatus(), request);
     }
 
-    @ExceptionHandler({InvalidParameterException.class, VerificationTokenInvalidException.class})
-    public ResponseEntity<Object> handleInvalidParameterException(InvalidParameterException ex) {
-        return createResponseFromExceptionMessage(ex);
+    @ExceptionHandler({InvalidParameterException.class, VerificationTokenInvalidException.class, EntityNotFoundException.class})
+    public ResponseEntity<Object> handleInvalidParameterException(Exception ex) {
+        return createResponseFromExceptionMessage(ex, HttpStatus.BAD_REQUEST);
     }
 
-    private ResponseEntity<Object> createResponseFromExceptionMessage(Exception ex) {
-        ErrorDTO errorDTO = new ErrorDTO(HttpStatus.BAD_REQUEST, ex.getMessage());
-        return new ResponseEntity<>(errorDTO, null, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler({EntityNotFoundException.class})
+    public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return createResponseFromExceptionMessage(ex, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({UnauthorizedActionException.class})
+    public ResponseEntity<Object> handleUnauthorizedActionException(UnauthorizedActionException ex) {
+        return createResponseFromExceptionMessage(ex, HttpStatus.UNAUTHORIZED);
+    }
+
+    private ResponseEntity<Object> createResponseFromExceptionMessage(Exception ex, HttpStatus status) {
+        ErrorDTO errorDTO = new ErrorDTO(status, ex.getMessage());
+        return new ResponseEntity<>(errorDTO, null, status);
     }
 }
