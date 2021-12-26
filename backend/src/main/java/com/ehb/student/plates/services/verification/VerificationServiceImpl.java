@@ -76,8 +76,8 @@ public class VerificationServiceImpl implements VerificationService {
         User user = token.getUser();
         helper.setFrom("info@digitaldreamteam.be");
         helper.setTo(token.getUser().getEmail());
-        helper.setSubject("Your Share-Plate Verification Code");
-        helper.setText(getFormattedMailTemplate(user.getFirstName(), token.getToken()), true);
+        helper.setSubject("Your Share-Plate Activation Link");
+        helper.setText(String.format("<a href='https://digitaldreamteam.be/verification/%s'>Klik hier om te activeren</a> \nDeze link is geldig voor 30 minuten.", token.getToken()), true);
         mailSender.send(message);
     }
 
@@ -97,6 +97,7 @@ public class VerificationServiceImpl implements VerificationService {
             put("name", name);
             put("token", token);
             put("expiration_time", String.valueOf(VerificationToken.EXPIRATION));
+            put("activation_link", "https://digitaldreamteam.be/verification/" + token);
         }};
 
         return StringSubstitutor.replace(getMailTemplate(), values, "{{", "}}");
