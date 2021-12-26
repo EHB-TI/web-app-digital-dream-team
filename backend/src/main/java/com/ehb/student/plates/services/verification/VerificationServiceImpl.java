@@ -12,14 +12,12 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -32,7 +30,7 @@ public class VerificationServiceImpl implements VerificationService {
     private final VerificationRepository verificationRepository;
     private final UserService userService;
     private final JavaMailSender mailSender;
-    private static final String mailTemplatePath = "templates/email/verification/verification-email.html";
+    private static final String mailTemplatePath = "templates\\email\\verification\\verification-email.html";
 
     @Autowired
     public VerificationServiceImpl(VerificationRepository verificationRepository,
@@ -101,7 +99,7 @@ public class VerificationServiceImpl implements VerificationService {
             put("expiration_time", String.valueOf(VerificationToken.EXPIRATION));
         }};
 
-        return StringSubstitutor.replace(getMailTemplate(), values, "{", "}");
+        return StringSubstitutor.replace(getMailTemplate(), values, "{{", "}}");
     }
 
     private String getMailTemplate() throws IOException, URISyntaxException {
